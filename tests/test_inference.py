@@ -67,26 +67,30 @@ def create_imputation_model():
 model = create_classification_model(num_channels=4, n_classes=2)
 x = torch.randn(1, 4, 512)  
 output = model(x_enc=x)
-print("Classification output:")
-pprint(output)
+# print("Classification output:")
+# pprint(output)
+assert output is not None, "Model returned None value"
 
 # Forcasting
 model = create_forecasting_model()
 x = torch.randn(16, 1, 512)
 output = model(x_enc=x)
-print("Forecasting output:")
-pprint(output)
+# print("Forecasting output:")
+# pprint(output)
+assert output is not None, "Model returned None value"
 
 # Anomaly Detection
 model = create_anomaly_detection_model()
 x = torch.randn(16, 1, 512)
 output = model(x_enc=x)
-print("Anomaly detection output:")
-pprint(output)
+# print("Anomaly detection output:")
+# pprint(output)
+assert output is not None, "Model returned None value"
 
 # Imputation
 model = create_imputation_model()
 x = torch.randn(16, 1, 512)
 output = model(x_enc=x)
-print("Imputation output:")
-pprint(output)
+# print("Imputation output:")
+# pprint(output)
+assert output is not None, "Model returned None value"
