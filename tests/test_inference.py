@@ -3,6 +3,7 @@ Code to test if MOMENT functions as installed (the torch version, numpy, transfo
 We test all of the different use cases to ensure the models run in each case.
 Model structures based on those given in the tutorials folder. 
 A test is considered successful if a TimeSeriesOutput is generated for each model inference pass, without an error.
+pytest runs "test_" functions during tox runtime.
 '''
 
 from momentfm import MOMENTPipeline # This imports the MOMENT model
@@ -64,33 +65,37 @@ def create_imputation_model():
     return model
 
 # Classification
-model = create_classification_model(num_channels=4, n_classes=2)
-x = torch.randn(1, 4, 512)  
-output = model(x_enc=x)
-# print("Classification output:")
-# pprint(output)
-assert output is not None, "Model returned None value"
+def test_classification():
+    model = create_classification_model(num_channels=4, n_classes=2)
+    x = torch.randn(1, 4, 512)  
+    output = model(x_enc=x)
+    # print("Classification output:")
+    # pprint(output)
+    assert output is not None, "Model returned None value"
 
-# Forcasting
-model = create_forecasting_model()
-x = torch.randn(16, 1, 512)
-output = model(x_enc=x)
-# print("Forecasting output:")
-# pprint(output)
-assert output is not None, "Model returned None value"
+# Forecasting
+def test_forecasting():
+    model = create_forecasting_model()
+    x = torch.randn(16, 1, 512)
+    output = model(x_enc=x)
+    # print("Forecasting output:")
+    # pprint(output)
+    assert output is not None, "Model returned None value"
 
 # Anomaly Detection
-model = create_anomaly_detection_model()
-x = torch.randn(16, 1, 512)
-output = model(x_enc=x)
-# print("Anomaly detection output:")
-# pprint(output)
-assert output is not None, "Model returned None value"
+def test_anomaly_detection():
+    model = create_anomaly_detection_model()
+    x = torch.randn(16, 1, 512)
+    output = model(x_enc=x)
+    # print("Anomaly detection output:")
+    # pprint(output)
+    assert output is not None, "Model returned None value"
 
 # Imputation
-model = create_imputation_model()
-x = torch.randn(16, 1, 512)
-output = model(x_enc=x)
-# print("Imputation output:")
-# pprint(output)
-assert output is not None, "Model returned None value"
+def test_imputation():
+    model = create_imputation_model()
+    x = torch.randn(16, 1, 512)
+    output = model(x_enc=x)
+    # print("Imputation output:")
+    # pprint(output)
+    assert output is not None, "Model returned None value"
