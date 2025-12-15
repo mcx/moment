@@ -1,9 +1,7 @@
 ''' 
-Code to test if MOMENT functions as installed (the torch version, numpy, transformers, Python, etc.)
-We test all of the different use cases to ensure the models run in each case.
-Model structures based on those given in the tutorials folder. 
+Ensure MOMENT can run an inference forward pass on each task it can perform.
+Model structures are based on those given in the tutorials folder. 
 A test is considered successful if a TimeSeriesOutput is generated for each model inference pass, without an error.
-pytest runs "test_" functions during tox runtime.
 '''
 
 from momentfm import MOMENTPipeline # This imports the MOMENT model
